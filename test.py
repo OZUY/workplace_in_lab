@@ -1,3 +1,5 @@
 import numpy as np
 
-print(np.random.mtrand._rand.rand(2))
+a = np.zeros(4)
+a[a==0]=1
+print(a)

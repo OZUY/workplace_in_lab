@@ -31,6 +31,7 @@ class acorn():
         self.bias_1 = np.random_state_.rand([hidden1,1]) *2-1
         self.bias_2 = np.random_state_.rand([hidden2,1]) *2-1
         self.bias_3 = np.random_state_.rand([hidden3,1]) *2-1
+        
         #make weight
         self.weight1 = np.random_state_.rand(self.A_inputs+self.B_inputs, self.hidden1) *2-1
         self.weight2 = np.random_state_.rand(self.hidden1, self.hidden2) *2-1
@@ -67,6 +68,27 @@ class acorn():
     def add_connection(self):
 
     def remove_connection(self):
+
+        ele = np.random.randint(128)
+        if ele < 80:
+            a = int(ele/10))
+            b = ele%10
+            self.weight1[a][b] = 0
+        elif ele < 120:
+            ele = ele-80
+            a = int(ele/14))
+            b = ele%4
+            self.weight1[a][b]=0
+
+        elif ele < 128:
+            ele = ele-120
+            a = int(ele/2))
+            b = ele%2
+            self.weight3[a][b]=0
+
+        self.weight1[np.random.mtrand.rand(*self.weight1.shape)<0.1] = 0
+        self.weight2[np.random.mtrand.rand(*self.weight2.shape)<0.1] = 0
+        self.weight3[np.random.mtrand.rand(*self.weight3.shape)<0.1] = 0
 
     def change_weight(self):
 
