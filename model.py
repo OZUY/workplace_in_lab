@@ -5,7 +5,7 @@ def sigmoid(x):
     return 1/(1 + math.exp(-x))
 
 class acorn():
-    def __init__(self, A_inputs_number, B_inputs_number, n_outputs, hidden1, hidden2, hidden3, n_modularity,random=None ):
+    def __init__(self, A_inputs_number=4, B_inputs_number=4, n_outputs=1, hidden1=10, hidden2=4, hidden3=2, n_modularity,random=None ):
         self.n_neuron = n_neuron
         self.A_inputs = A_inputs
         self.B_inputs = B_inputs
@@ -14,6 +14,11 @@ class acorn():
         self.hidden3 = np.zeros([hidden3,1])
         self.n_outputs = n_outputs
         self.n_modularity = n_modularity
+
+        self.m_inputs = np.zeros([self.A_inputs+self.B_inputs,1])
+        self.m_list1 = np.zeros([hidden1,1])
+        self.m_list2 = np.zeros([hidden2,1])
+        self.m_list3 = np.zeros([hidden3,1])
 
         # the given random_state might be either an actual RandomState object,
         # a seed or None (in which case we use numpy's builtin RandomState)
@@ -39,8 +44,14 @@ class acorn():
         self.weight4 = np.random_state_.rand(self.hidden3, self.n_outputs) *2-1
 
 
-    def _updata(self, weight):
+    def _updata(self, input_pattern):
+        for i,j in enumerate(self.m_list1):
+            if j == 0:
+                T += np.dot(self.weight1[i, :],input_pattern)
 
+        return sigmoid(T + self.bias_1[])
+
+        
 
     def modularity(self):
 
@@ -65,8 +76,33 @@ class acorn():
             change_neuron_tyape()
         if e == "True":
             move_connection()
-    def add_connection(self):
 
+    def add_connection(self):
+        while(True):
+        ele = np.random.randint(128)
+
+        if ele < 80:
+            a = int(ele/10))
+            b = ele%10
+            if self.weight1[a][b] == 0:
+                self.weight1[a][b] = np.random.rand() *2-1
+                return
+        elif ele < 120:
+            ele = ele-80
+            a = int(ele/14))
+            b = ele%4
+            if self.weight2[a][b] == 0:
+                self.weight2[a][b] = np.random.rand() *2-1
+                return
+
+        elif ele < 128:
+            ele = ele-120
+            a = int(ele/2))
+            b = ele%2
+            if self.weight3[a][b] == 0:
+                self.weight3[a][b] = np.random.rand() *2-1
+                return
+                
     def remove_connection(self):
 
         ele = np.random.randint(128)
@@ -78,17 +114,13 @@ class acorn():
             ele = ele-80
             a = int(ele/14))
             b = ele%4
-            self.weight1[a][b]=0
+            self.weight2[a][b]=0
 
         elif ele < 128:
             ele = ele-120
             a = int(ele/2))
             b = ele%2
             self.weight3[a][b]=0
-
-        self.weight1[np.random.mtrand.rand(*self.weight1.shape)<0.1] = 0
-        self.weight2[np.random.mtrand.rand(*self.weight2.shape)<0.1] = 0
-        self.weight3[np.random.mtrand.rand(*self.weight3.shape)<0.1] = 0
 
     def change_weight(self):
 

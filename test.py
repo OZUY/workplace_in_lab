@@ -1,5 +1,5 @@
 import numpy as np
 
-a = np.zeros(4)
-a[a==0]=1
+a = np.random.mtrand.rand(2,4)
 print(a)
+print(a[1][2])
